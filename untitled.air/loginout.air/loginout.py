@@ -18,7 +18,7 @@ def login():
     poco("android.widget.Button").click()
     sleep(1)
     a = poco("com.vanke.wyguide:id/titleRb").get_text()
-    assert_equal("张文凯的工作台", a, "登录成功.")
+    assert_equal("工作台", a, "登录成功.")
 
 def login_out():
     # 登出
@@ -28,14 +28,20 @@ def login_out():
     assert_equal("登 录", login, "登出1_.")
 
 #通过判断一下元素是否存在，来判断是否处于登录状态
-if poco("com.vanke.wyguide:id/navigation_dashboard"):
-    #元素存在，处于登录状态
-    login_out()
+if __name__ == '__main__':
+    if poco("com.vanke.wyguide:id/navigation_dashboard"):
+        #元素存在，处于登录状态
+        login_out()
 
-else:
-    #元素不存在，不处于登录状态
-    login()
-    login_out()
+    else:
+        #元素不存在，不处于登录状态
+        try:
+            login()
+        except Exception as ex:
+            raise ex
+        #退出try语句总会执行程序
+        finally:
+            login_out()
 
 
 
