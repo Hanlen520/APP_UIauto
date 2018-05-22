@@ -1,0 +1,1 @@
+{"tag": "main_script", "depth": 0, "data": {"script": "E:\\F\\zhangwk02\\APP_UIauto\\test.air\\start_work.air"}, "time": "2018-05-22 21:16:37"}
