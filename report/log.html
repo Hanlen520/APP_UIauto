@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title lang="en">
+    script running report
+    </title>
+    
+    <!--[if lt IE 9]>
+    <script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+
+    <link href="c:\python\py3.5\lib\site-packages\airtest\report/css/bootstrap.min.css" rel="stylesheet">
+    <link href="c:\python\py3.5\lib\site-packages\airtest\report/css/main.css" rel="stylesheet">
+
+    <link href="c:\python\py3.5\lib\site-packages\airtest\report/css/report.css" rel="stylesheet">
+    <link href="c:\python\py3.5\lib\site-packages\airtest\report/css/jquery.fancybox.css" rel="stylesheet">
+    <link href="c:\python\py3.5\lib\site-packages\airtest\report/css/animate.css" rel="stylesheet">
+
+    <script src="c:\python\py3.5\lib\site-packages\airtest\report/js/jquery-1.10.2.min.js"></script>
+    <script src="c:\python\py3.5\lib\site-packages\airtest\report/js/echarts/echarts.common.min.js"></script>
+    <script src="c:\python\py3.5\lib\site-packages\airtest\report/js/echarts/shine.js"></script>
+    <script src="c:\python\py3.5\lib\site-packages\airtest\report/js/jquery-lang.js" charset="utf-8" type="text/javascript"></script>
+    <script src="c:\python\py3.5\lib\site-packages\airtest\report/js/langpack/zh_CN.js" charset="utf-8" type="text/javascript"></script>
+    <script src="c:\python\py3.5\lib\site-packages\airtest\report/js/lazyload.js" charset="utf-8" type="text/javascript"></script>"
+    <script type="text/javascript">
+        var lang = new Lang();
+        lang.init({
+            defaultLang: 'en',
+            currentLang: 'zh'
+        });
+    </script>
+    <style>
+    h2.header {
+        background-color: #3498db;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 25px;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    div.screen_holder {
+      /*position: relative;*/
+      position: absolute;
+      margin-top: 10px;
+    }
+
+    div.screen_holder img {
+      /*max-height: 600px;*/
+    }
+
+    img.crop_image {
+      display: block;
+    }
+
+    img.spot {
+      position: absolute;
+      width:50px;
+      height:50px;
+      margin-left: -25px;
+      margin-top: -25px;
+    }
+
+    img#gif{
+      max-width: 100%;
+      min-height: 50px;
+      max-height: 380px;
+    }
+    
+    div.rect {
+      position: absolute;
+      border:2px solid red;
+      border-radius: 5px;
+      z-index: 99;
+    }
+
+    p.desc {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .moa label {
+      font-size: 16px;
+    }
+
+    .moa .point {
+      font-size: 20px;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    pre {
+      background-color: #23241f;
+    }
+
+    img.error-img {
+      max-width: 70px !important;
+    }
+
+    .ztree span.glyphicon {
+      color: red;
+    }
+
+    .scale {
+      transform-origin:top left;
+    }
+
+    #main {
+      padding-top: 10px;
+      min-height: 600px;
+    }
+
+    .fast-nav-step {
+      position: fixed;
+      right: 30px;
+      bottom: 10px;
+      z-index: 10;
+      padding: 10px 20px;
+      margin-left: 30px;
+      background: rgba(222,222,222,0.8);
+    }
+
+    .fast-nav-step label {
+      display: block;
+      border-bottom: 1px solid #7f8c8d;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      color: #34495e;
+    }
+
+    .a-circle {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 25px;
+
+      padding-top: 4px;
+
+      text-align: center;
+      color: white; 
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+    
+    .fast-nav-step .a-circle:hover {
+      opacity: 0.9;
+      box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);    
+    }
+
+    #nav_steps {
+      max-height: 600px;
+      transition: max-height 0.25s ease-in;
+    }
+
+    #nav_steps.collapsed {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.15s ease-out;
+    }
+
+    div.assert {
+      padding-left: 20px;
+    }
+    .gif-wrap {
+        max-height: 400px;
+        text-align: center;
+    }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="container-fluid" style="max-width:1400px;">
+      <div class="row">
+        <div id="main" class="main col-md-12">
+
+          
+
+          <div class="material moa" >
+              <h2><span lang="en">Test Case</span> 
+              
+              <label class="green" lang="en">[Passed]</label>
+              
+            </h2>
+            
+            <h4 lang="en">Author: Anonymous</h4>
+            
+            <h4>2018-05-23 16:39:48 -- 2018-05-23 16:40:37</h4>
+
+            <h2 class="header" lang="en">Assert: Test Steps Summary</h2>
+            <hr>
+            <div class="row">
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_2">2</a>
+                  
+                    <span lang="en">Expected result:</span>开始工作1.1
+                </div>
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_3">3</a>
+                  
+                    <span lang="en">Expected result:</span>开始工作1.2
+                </div>
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_5">5</a>
+                  
+                    <span lang="en">Expected result:</span>勾选第一个岗位
+                </div>
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_7">7</a>
+                  
+                    <span lang="en">Expected result:</span>取消勾选第一个岗位
+                </div>
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_9">9</a>
+                  
+                    <span lang="en">Expected result:</span>取消勾选第一个岗位
+                </div>
+              
+            
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_12">12</a>
+                  
+                    <span lang="en">Expected result:</span>全选工作岗位
+                </div>
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_14">14</a>
+                  
+                    <span lang="en">Expected result:</span>取消全选工作岗位
+                </div>
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_16">16</a>
+                  
+                    <span lang="en">Expected result:</span>取消勾选第一个岗位
+                </div>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_22">22</a>
+                  
+                    <span lang="en">Expected result:</span>开始工作断言1
+                </div>
+              
+            
+              
+                <div class="col-xs-4 assert">
+                    <span lang="en">Test step</span>
+                  
+                  <a class="a-circle bg-green" href="#main_script_23">23</a>
+                  
+                    <span lang="en">Expected result:</span>开始工作断言2
+                </div>
+              
+            
+              
+            
+            </div>
+          </div>
+
+        <!-- 录屏 -->
+         <div class="row gif-wrap">
+          <div class="col-md-6">
+            
+              <p lang="en">No record information found.</p>
+            
+          </div>
+         </div>
+
+        <!--单步-->
+        
+        
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_1">
+
+            <h2 class="header">[main]Step 1 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:39:48]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064801908.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064801908.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/titleRb&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_2">
+
+            <h2 class="header">[main]Step 2 <span class="step_title" lang="en">Assert equal</span> <span class="step_title">[2018-05-23 16:40:03]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>assert_equal [ &#34;全选&#34;, &#34;全选&#34;, &#34;开始工作1.1&#34; ]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_3">
+
+            <h2 class="header">[main]Step 3 <span class="step_title" lang="en">Assert equal</span> <span class="step_title">[2018-05-23 16:40:03]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>assert_equal [ &#34;开始工作&#34;, &#34;开始工作&#34;, &#34;开始工作1.2&#34; ]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_4">
+
+            <h2 class="header">[main]Step 4 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:04]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064804356.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064804356.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/listView/android.widget.LinearLayout[0]&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_5">
+
+            <h2 class="header">[main]Step 5 <span class="step_title" lang="en">Assert exists</span> <span class="step_title">[2018-05-23 16:40:06]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="E:\F\zhangwk02\APP_UIauto\test.air\selected.png" title="E:\F\zhangwk02\APP_UIauto\test.air\selected.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.429, -0.619], resolution: [720, 1280]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064806389.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064806389.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="c:\python\py3.5\lib\site-packages\airtest\report/image/target.png" data-top="289" data-left="1003" style="top:289px;left:1003px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-left="951"data-width="105"data-top="240"data-height="99"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 99.6%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_6">
+
+            <h2 class="header">[main]Step 6 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:07]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064806961.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064806961.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/listView/android.widget.LinearLayout[0]&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_7">
+
+            <h2 class="header">[main]Step 7 <span class="step_title" lang="en">Assert exists</span> <span class="step_title">[2018-05-23 16:40:09]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="E:\F\zhangwk02\APP_UIauto\test.air\unselect.png" title="E:\F\zhangwk02\APP_UIauto\test.air\unselect.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.424, -0.619], resolution: [720, 1280]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064808951.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064808951.jpg">
+                      
+                      <img class="spot animated infinite rubberBand" src="c:\python\py3.5\lib\site-packages\airtest\report/image/target.png" data-top="579" data-left="998" style="top:579px;left:998px;">
+                        <!-- rect area -->
+                        
+                        <div class="rect" data-left="951"data-width="94"data-top="540"data-height="78"></div>
+                        
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+                    <p class="desc"><span class="point glyphicon glyphicon-play"></span><span lang="en">Matching confidence:</span> 98.0%</p>
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_8">
+
+            <h2 class="header">[main]Step 8 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:09]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064809207.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064809207.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/titleTv&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_9">
+
+            <h2 class="header">[main]Step 9 <span class="step_title" lang="en">Assert not exists</span> <span class="step_title">[2018-05-23 16:40:14]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="E:\F\zhangwk02\APP_UIauto\test.air\unselect.png" title="E:\F\zhangwk02\APP_UIauto\test.air\unselect.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.424, -0.619], resolution: [720, 1280]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064814882.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064814882.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片不存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_10">
+
+            <h2 class="header">[main]Step 10 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:15]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064815286.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064815286.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/titleRb&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_11">
+
+            <h2 class="header">[main]Step 11 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:17]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064817395.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064817395.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/checkAllBtn&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_12">
+
+            <h2 class="header">[main]Step 12 <span class="step_title" lang="en">Assert equal</span> <span class="step_title">[2018-05-23 16:40:19]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>assert_equal [ &#34;取消全选&#34;, &#34;取消全选&#34;, &#34;全选工作岗位&#34; ]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_13">
+
+            <h2 class="header">[main]Step 13 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:19]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064819526.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064819526.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/checkAllBtn&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_14">
+
+            <h2 class="header">[main]Step 14 <span class="step_title" lang="en">Assert equal</span> <span class="step_title">[2018-05-23 16:40:21]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>assert_equal [ &#34;全选&#34;, &#34;全选&#34;, &#34;取消全选工作岗位&#34; ]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_15">
+
+            <h2 class="header">[main]Step 15 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:21]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064821670.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064821670.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/titleTv&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_16">
+
+            <h2 class="header">[main]Step 16 <span class="step_title" lang="en">Assert not exists</span> <span class="step_title">[2018-05-23 16:40:26]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Target object</span></label>
+                  </div>
+                  <div class="col-xs-9">
+                    <img class="crop_image" src="E:\F\zhangwk02\APP_UIauto\test.air\unselect.png" title="E:\F\zhangwk02\APP_UIauto\test.air\unselect.png">
+                    <!-- 显示截图相关的参数 (供后续的图像识别的调试使用) -->
+                    <p class="desc">record_pos: [0.424, -0.619], resolution: [720, 1280]</p>
+                  </div>
+
+                </div>
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064826432.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064826432.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>断言目标图片不存在</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_17">
+
+            <h2 class="header">[main]Step 17 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:26]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064826811.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064826811.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/titleRb&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_18">
+
+            <h2 class="header">[main]Step 18 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:29]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064829105.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064829105.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/listView/android.widget.LinearLayout[0]&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_19">
+
+            <h2 class="header">[main]Step 19 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:31]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064831382.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064831382.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/listView/android.widget.LinearLayout[1]&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_20">
+
+            <h2 class="header">[main]Step 20 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:33]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064833504.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064833504.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/startWorkBtn&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_21">
+
+            <h2 class="header">[main]Step 21 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:35]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064835443.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064835443.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/titleRb&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_22">
+
+            <h2 class="header">[main]Step 22 <span class="step_title" lang="en">Assert equal</span> <span class="step_title">[2018-05-23 16:40:37]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>assert_equal [ &#34;结束工作&#34;, &#34;结束工作&#34;, &#34;开始工作断言1&#34; ]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_23">
+
+            <h2 class="header">[main]Step 23 <span class="step_title" lang="en">Assert equal</span> <span class="step_title">[2018-05-23 16:40:37]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+              <!--不带图片的操作-->
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>assert_equal [ &#34;岗位切换&#34;, &#34;岗位切换&#34;, &#34;开始工作断言2&#34; ]</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+          <div class="material moa main_script" data-trace="False" id="main_script_24">
+
+            <h2 class="header">[main]Step 24 <span class="step_title" lang="en">Snapshot</span> <span class="step_title">[2018-05-23 16:40:37]</span></h2>
+            <hr>
+            <div class="step_content">
+              <!--单步操作-->
+              <!--带图片的操作-->
+              
+
+                
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="point">
+                      <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                      <label><span lang="en">Runtime screenshot</span></label>
+                  </div>
+                  <!-- scale移除文档流， 使用js对screen_place赋值高度来占位 -->
+                  <div class="col-xs-9" style="overflow-x:auto; overflow-y:hidden;">
+                    <div class="screen_holder">
+                      <img class="fancybox scale lazyload" data-src="E:\F\zhangwk02\APP_UIauto\log\1527064837656.jpg" url="" title="E:\F\zhangwk02\APP_UIauto\log\1527064837656.jpg">
+                      
+                    </div>
+                    <br />
+                    <div class="screen_place"></div>
+                  </div>
+                </div>
+
+                
+
+              <p class="desc"><span class="point glyphicon glyphicon-play"></span>截图描述：UIObjectProxy of &#34;com.vanke.wyguide:id/titleTv&#34;</p>
+              
+
+              <!--单步结果-->
+              
+              <div class="alert alert-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                  <span lang="en">Execution finished successfully</span>
+              </div>
+              
+
+            </div>
+          </div>
+          
+        
+
+          <!-- 导航栏 -->
+          <div class="fast-nav-step">
+              <label><span lang="en">Steps navigation</span>
+              <button class="btn btn-info btn-sm" id="collapse_nav_step"><i class="glyphicon glyphicon-chevron-down"></i></button>
+              <button class="btn btn-info btn-sm" id="expand_nav_step"><i class="glyphicon glyphicon-chevron-up"></i></button>
+            </label>
+            <div id="nav_steps">
+            
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_1">1</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_2">2</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_3">3</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_4">4</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_5">5</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_6">6</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_7">7</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_8">8</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_9">9</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_10">10</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_11">11</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_12">12</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_13">13</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_14">14</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_15">15</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_16">16</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_17">17</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_18">18</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_19">19</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_20">20</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_21">21</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_22">22</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_23">23</a>
+                
+              
+                
+                <a class="a-circle bg-green nav_main_script" href="#main_script_24">24</a>
+                
+              
+            
+              <a class="a-circle bg-green" href="#">Top</a>
+            </div>
+          </div>
+
+
+        </div>
+      </div>  
+    </div>
+  
+    
+    <div class="footer">
+        <span lang="en">Related information</span>
+    </div> 
+    
+  
+  
+  <script src="c:\python\py3.5\lib\site-packages\airtest\report/js/bootstrap.min.js"></script>
+
+  <!-- hightlight js -->
+  <link href="c:\python\py3.5\lib\site-packages\airtest\report/css/monokai_sublime.min.css" rel="stylesheet">  
+  <script src="c:\python\py3.5\lib\site-packages\airtest\report/js/highlight.min.js"></script>  
+  <script >hljs.initHighlightingOnLoad();</script>
+
+  <script>
+  $(function() {
+      iframe = window.frameElement;
+      if (iframe) {
+          window.frameElement.setAttribute("allowfullscreen", "allowfullscreen")
+      }
+    $("#collapse_nav_step").click(function() {
+      $("#nav_steps").addClass('collapsed');
+      $(this).hide();
+      $("#expand_nav_step").show();
+    });
+
+    $("#expand_nav_step").click(function() {
+      $("#nav_steps").removeClass('collapsed');
+      $(this).hide();
+      $("#collapse_nav_step").show();
+    });
+    $("#collapse_nav_step").click();
+    $("#collapse_nav_step").hide(); // init
+  });
+
+  $(function(){
+    var scale = 0.5;
+    var imgWidth = 0;
+    var imgPercent = 0.7; 
+
+    $("img").error(function () {
+      var orsrc = $(this).attr("src")
+      if(!orsrc){ return }
+      if(orsrc.indexOf("report.gif") > -1){
+        setTimeout(function(){
+          //console.log($(this).attr("src"));
+          $(this).attr("src", 'report.gif?timestamp=' + new Date().getTime());
+          //console.log($(this).attr("src"));
+        }.bind(this), 5000)
+        return
+      }
+
+      $(this).unbind("error")
+      .addClass('error-img')
+      .attr("src", "c:\python\py3.5\lib\site-packages\airtest\report/image/broken.png")
+      .attr("orgin-src", orsrc);
+    });
+    
+    //to trigger error event manual 
+    $("#gif").attr("src", "report.gif?timestamp=" + new Date().getTime());
+
+    $(".screen_holder").find("img.fancybox").load(function(e){
+
+      imgWidth = Math.max($(this).width(), imgWidth);
+      var dwidth = $("div.material.moa").width()
+      //图片最大宽度
+      var s = (dwidth*imgPercent)/imgWidth
+      s = Math.round(s * 100) / 100
+      scale_img(s);
+    })
+
+    function scale_img(i){
+      $(".screen_holder").find("img.fancybox").each(function(e){
+        var h = $(this).height();
+        var sc = 'scale('+ i +','+ i +')';
+        
+        var scale_css = {
+          '-ms-transform': sc,
+          '-webkit-transform': sc,
+          '-moz-transform': sc,
+          'transform': sc,
+        }
+        
+        $(this).css(scale_css)
+
+        var sp = $(this).siblings('img.spot');
+        var rect = $(this).siblings('div.rect');
+        
+        rect.css({
+          'top':rect.data('top') * i ,
+          'left':rect.data('left') * i ,
+          'width':rect.data('width') * i,
+          'height':rect.data('height') * i,
+        });
+        
+        var top = sp.data('top');
+        var left = sp.data('left');
+        sp.css({
+          'top':top*i,
+          'left':left*i,
+        })
+        
+        $(this).parents('.screen_holder').siblings('.screen_place').height(h*i);
+      });
+    }
+    //resize img
+    scale_img(scale);
+
+    $(window).resize(function() {
+      var ww = $('body').width();
+      if (ww < 900){
+        scale = 0.25;
+      }
+      else if (ww < 1100 ){
+        scale = 0.3;
+      }
+      else if( ww < 1300){
+        scale = 0.4;  
+      }else{
+        scale = 0.5;
+      }
+
+      if(imgWidth != 0){
+        //实时计算
+        var dwidth = $("div.material.moa").width()
+        //图片最大宽度
+        scale = (dwidth*imgPercent)/imgWidth
+        scale = Math.round(scale * 100) / 100          
+      }
+
+      scale_img(scale)
+    });
+    $(window).resize();
+    // 延迟加载图片
+    lazyload();
+  });
+  </script>
+
+  <script>
+  $(window).resize();
+  </script>
+  </body>
+</html>

@@ -2,7 +2,9 @@
 
 import time
 from airtest.core.api import *
-from common.read_xls import read_xls
+import sys
+sys.path.insert(1, "E:\F\zhangwk02\APP_UIauto\common")
+from read_xls import read_xls
 
 login_data=read_xls("test_data.xlsx")
 

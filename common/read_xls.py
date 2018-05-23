@@ -1,7 +1,9 @@
-import os
+import os,sys
 import xlrd
 from datetime import datetime
 from xlrd import xldate_as_tuple
+
+
 
 def read_xls(filename):
     file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)) + "\\data", filename)
