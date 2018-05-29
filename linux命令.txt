@@ -1,0 +1,126 @@
+
+    2  ll
+    3  pwd
+    4  ifcongif
+    5  ifconfig
+    6  python 
+    7  ifconfig
+    8  pwd
+    9  cd /
+   10  ll
+   11  cd user
+   12  ll
+   13  pwd
+   14  mkdir py2
+   15  su 
+   16  ll
+   17  pwd
+   18  mkidr py2
+   19  sudo su
+   20  sudo mkdir cod
+   21  sudo mkdir code 
+   22  ll
+   23  rm code/
+   24  sudo su
+   25  ll
+   26  mkdir aap
+   27  sudo apt install python-virtualenv
+   28  easy_install virtualenvwrapper
+   29  sudo apt install python-setuptools
+   30  sudo apt install python-virtualenv
+   31  pip
+   32  pip 
+   33  sudo apt install pyton-pip
+   34  pip
+   35  sudo apt install python-pip
+   36  pip
+   37  ll
+   38  rm -rf code/
+   39  sudo rm -rf code/
+   40  ll
+   41  pwd
+   42  cd py2/
+   43  ll
+   44  mkvirtualenv severs
+   45  mkvirtualenv mywork
+   46  python-virtualenv
+   47  tree /usr
+   48  sudo apt-get tree
+   49  sudo apt install tree
+   50  tree /user
+   51  git 
+   52  sudo apt install git
+   53  sudo su
+   54  cd home/zwk/py2
+   55  cd ~
+   56  ll
+   57  cd py2/
+   58  ll
+   59  cd falcon-master/
+   60  ll
+   61  ls
+   62  cd ..
+   63  ls
+   64  virtualenv falcon_env
+   65  ls
+   66  source falcon_env/bin/activate
+   67  cd falcon
+   68  ls
+   69  cd falcon_m
+   70  cd falcon-master/
+   71  ls
+   72  pip intsall -r req.txt 
+   73  pip install -r req.txt 
+   74  sudo apt-get install libmysqlclient-dev
+   75  pip install -r req.txt 
+   76  pip install celery
+   77  pip install -r req.txt 
+   78  pip install Pillow
+   79  pip install -r req.txt 
+   80  sudo apt-get install libffi-dev
+   81  pip install -r req.txt 
+   82  sudo apt-get install libssl-dev
+   83  pip install -r req.txt 
+   84  sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+   85  sudo apt-get build-dep python-lxml
+   86  sudo port install py27-lxml
+   87  sudo apt-get install py27-lxml
+   88  sudo apt-get install python-dev libxml2-dev libxslt1-dev zlib1g-dev
+   89  pip install -r req.txt 
+   90  sudo pip install Pillow
+   91  pip install -r req.txt 
+   92  sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev     libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
+   93  pip install -r req.txt 
+   94  ls
+   95  ./runserver.sh
+   96  chmod 775 runtest.sh
+   97  chmod 775 runserver.sh
+   98  ll
+   99  ./runserver.sh 
+  100  sudo mkdir /var/log/falcon/falcon.log
+  101  ll
+  102  cd /
+  103  ll
+  104  cd var
+  105  ll
+  106  ls
+  107  cd ~/py2
+  108  ls
+  109  cd falcon-master/
+  110  ls
+  111  tree config
+  112  cd config /dev/
+  113  cp env.sample env
+  114  cp -r env.sample env
+  115  ls
+  116  cd dev/
+  117  ls
+  118  cp env.sample env
+  119  ls
+  120  vim env
+  121  sudo apt-get vim
+  122  sudo apt-get install vim
+  123  cat env
+  124  vim env
+  125  cd ../..
+  126  ./runserver.sh 
