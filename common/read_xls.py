@@ -3,8 +3,6 @@ import xlrd
 from datetime import datetime
 from xlrd import xldate_as_tuple
 
-
-
 def read_xls(filename):
     file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)) + "\\data", filename)
     xl=xlrd.open_workbook(file_path)
@@ -24,3 +22,5 @@ def read_xls(filename):
             row_content.append(cell)
         all_content.append(row_content)
     return all_content
+
+a=read_xls('test_data.xlsx')

@@ -69,15 +69,6 @@ run_mess.search_text()
 run_mess.cancle_search()
 run_mess.add_action()
 
-
-
-
-
-
-
-
-
-
 # class clsTest():
 #     y = '322'
 #     z='z1'

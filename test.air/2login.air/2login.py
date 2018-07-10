@@ -11,6 +11,9 @@ login_data=read_xls("test_data.xlsx")
 auto_setup(__file__)
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 poco = AndroidUiautomationPoco(force_restart=False)
+
+
+
 poco("com.vanke.wyguide:id/et_username").set_text(login_data[0][0])
 poco("com.vanke.wyguide:id/et_password").set_text(login_data[0][1])
 poco("android.widget.Button").click()
