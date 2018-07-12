@@ -40,6 +40,13 @@ class report_test(reportPage):
         text_title=po.get_title()
         assert_equal("任务类型",text_title,"断言title")
 
+
+    @catch_error
+    def test_select_ptype(self,task_name):
+        #选择父任务类型
+        po=reportPage()
+        po.select_ptype(task_name)
+
     @catch_error
     def test_sele_task(self,task_name,No,txt_mess):
         #选择任务类型
@@ -125,8 +132,10 @@ class report_test(reportPage):
         po=reportPage()
         po.text_area(text_data)
         po.commit()
+        sleep(1)
         #报事儿完成，回到主界面，断言
         text_report=po.get_rept_txt()
+        sleep(1)
         assert_equal("报事",text_report,"报事儿成功，断言回到主界面")
 
 

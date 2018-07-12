@@ -38,6 +38,9 @@ class reportPage(Base):
     def task_click(self):
         poco(self.task_type).click()
 
+    #父级别任务
+    def select_ptype(self,task_name):
+        poco(text=task_name).click()
 
     def select_type(self,task_name,No):
         poco(text=task_name).click()
