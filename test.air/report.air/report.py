@@ -24,7 +24,9 @@ for task in rept_list("报事儿类型")[0]:
                 sub_keys=list(sub_list.keys())[0]
                 #循环遍历子任务类型
                 for value_index in range(len(list(sub_list.values())[0])):
-
+                    #滑动子任务到低端
+                    if sub_keys=="办公家私":
+                        test.sub_task_swip(sub_keys)
                     test.test_sele_task(sub_keys,value_index,'此任务有以下岗位"安全主管/客服主管/环境主管/环境监控"可在抢单池强单')
 
                     # 2.3具体位置
