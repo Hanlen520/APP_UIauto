@@ -1,4 +1,6 @@
-from page_obj.messagePage import mesPage
+import sys
+sys.path.append("E:\F\zhangwk02\APP_UIauto\page_obj")
+from messagePage import mesPage
 from airtest.core.api import *
 import sys
 sys.path.append("E:\F\zhangwk02\APP_UIauto\common")
@@ -8,7 +10,6 @@ class message_test():
     @catch_error
     def mess_in_action(self):
         po=mesPage()
-        po.mess_in()
         mess_text=po.get_mess()
         assert_equal("消息",mess_text,"消息栏1")
         search_text=po.get_search()

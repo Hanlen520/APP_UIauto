@@ -1,4 +1,6 @@
-from page_obj.reportPage import reportPage
+import sys
+sys.path.append("E:\F\zhangwk02\APP_UIauto\page_obj")
+from reportPage import reportPage
 from airtest.core.api import *
 import sys
 sys.path.append("E:\F\zhangwk02\APP_UIauto\common")

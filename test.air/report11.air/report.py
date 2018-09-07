@@ -1,5 +1,7 @@
-from page_obj.rep_page import report_test
-from  common.read_json import *
+import sys
+sys.path.append("E:\F\zhangwk02\APP_UIauto\page_obj")
+from rep_page import report_test
+from  read_json import *
 import random
 import time
 

@@ -15,6 +15,7 @@ poco = AndroidUiautomationPoco(force_restart=False)
 # 展开折叠开始工作列表
 @catch_error
 def start_working1():
+    poco("com.vanke.wyguide:id/navigation_home").child("com.vanke.wyguide:id/icon").click()
     poco("com.vanke.wyguide:id/titleRb").click()
     #全选
     select=poco("com.vanke.wyguide:id/checkAllBtn").get_text()

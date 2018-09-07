@@ -19,7 +19,7 @@ class mesPage(object):
 
     #加号
     add=("com.vanke.wyguide:id/more_im")
-    add1=(Template(r"tpl1527220902576.png", record_pos=(0.427, -0.746), resolution=(1080, 1920)))
+    add1=(Template(r"tpl1531729905011.png", record_pos=(0.422, -0.742), resolution=(1080, 1920)))
     group_chat=("发起群聊")
     Contacts=("通讯录  ")
 

@@ -1,5 +1,7 @@
 from airtest.core.api import *
-from page_obj.Base_report import Base
+import sys
+sys.path.append("E:\F\zhangwk02\APP_UIauto\page_obj")
+from Base_report import Base
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 poco = AndroidUiautomationPoco(force_restart=False)
 
@@ -118,7 +120,11 @@ class reportPage(Base):
     def t_swipe(self):
         poco(self.yungong).swipe([0.0688, -0.5058])
         sleep(1)
+
+    def sub_task_swip(self,task_data):
+        poco(text=task_data).swipe([0.0375, -0.3059])
 #-----------------------------------------------
+
     #具体描述
     def text_area(self,text_data):
         poco(self.textarea).set_text(text_data)
